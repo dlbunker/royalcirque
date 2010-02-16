@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+          <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+          <title><%=h yield(:title) %></title>
+          <%= stylesheet_link_tag "royalcirque", :media => "screen" %>
+          <%= javascript_include_tag "jquery-1.3.2.min",
+									 "jquery.sifr",
+									 "jquery.swfobject",
+                                     "application" %>
+	      <script type="text/javascript"><!--  
+				$(document).ready(function(){  
+				     $.sifr({ build: 436, version: 3, path: "/fonts/", save: true });  
+				     $(".gotham-light-forced-line").sifr({ font: "Gotham-Light", forceSingleLine: true, overX: 10 });  
+				     $(".gotham-light").sifr({ font: "Gotham-Light", overY: 5 });  
+				});  
+				// -->
+	      </script>
+          <%= yield :head %>
+	</head>  
+  <body>
+	<div id="banner-white-spacer">
+	</div>
+	<div id="banner-header">
+		<%= link_to image_tag("layout/logo.jpg", :border =>0, :class => 'centered-image') , {:controller => "home" } %>
+	</div>
+	<div id="banner-grey-spacer">
+	</div>
+	<div id="header-nav-bar">
+		<span>
+			<%= link_to image_tag("layout/home.jpg", :border =>0) , {:controller => "home" } %>
+			<%= link_to image_tag("layout/products.jpg", :border =>0) , {:controller => "home" } %>
+			<%= link_to image_tag("layout/view_cart.jpg", :border =>0) , {:controller => "home" } %>
+			<%= link_to image_tag("layout/contact_us.jpg", :border =>0) , {:controller => "home" } %>
+		</span>
+	</div>
+        <%= yield %>
+	<div id="banner-footer">
+		<div id="footer-content">
+			<table id="about-table" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="50%" valign="top" style="border-right: 1px solid white;">
+						<table class="content-table">
+							<tr border="0">
+								<td align="right" valign="top" class="large-font">
+									<p class="gotham-light-forced-line">ABOUT</p>
+									<p class="gotham-light-forced-line">ROYAL</p>
+									<p class="gotham-light-forced-line">CIRQUE</p>
+								</td>
+								<td align="left" valign="top" class="normal-font">
+									<p class="gotham-light">We are a media distributor and publisher based in Salt Lake City, UT.  Royal Cirque Publishing produces high quality books and music ranging in a wide variety of topics.</p>
+									<p>&nbsp;</p>
+									<p class="gotham-light">If you are an author, buyer, printer, or distributor please feel free to contact us.</p>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="50%" valign="top" >
+						<table class="content-table">
+							<tr border="0">
+								<td align="right" valign="top" class="large-font">
+									<p class="gotham-light-forced-line">CONTACT</p>
+									<p class="gotham-light-forced-line">US</p>
+								</td>
+								<td align="left" valign="top" class="normal-font">
+									<p>&nbsp;</p>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="footer-white-spacer">
+	</div>
+	<div id="footer-fill">
+		<div id="copyright"><br/>&copy; 2010 ROYAL CIRQUE PUBLISHING. ALL RIGHTS RESERVED</div>
+	</div>
+  </body>
+</html>

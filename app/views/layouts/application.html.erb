@@ -15,6 +15,18 @@
 				     $(".gotham-light-forced-line").sifr({ font: "Gotham-Light", forceSingleLine: true, overX: 10 });  
 				     $(".gotham-light").sifr({ font: "Gotham-Light", overY: 5 });  
 				});  
+				$(document).ready(function(){  
+					$(function() {
+						$(".hoverswap").hover(
+							function () {
+								$(this).attr("src", $(this).attr("src").replace(/.jpg/, "_on.jpg"));
+							},
+							function () {
+								$(this).attr("src", $(this).attr("src").replace(/_on.jpg/, ".jpg"));
+							}
+						);
+					});
+				});  
 				// -->
 	      </script>
           <%= yield :head %>
@@ -29,10 +41,10 @@
 	</div>
 	<div id="header-nav-bar">
 		<span>
-			<%= link_to image_tag("layout/home.jpg", :border =>0) , {:controller => "home" } %>
-			<%= link_to image_tag("layout/products.jpg", :border =>0) , {:controller => "home" } %>
-			<%= link_to image_tag("layout/view_cart.jpg", :border =>0) , {:controller => "home" } %>
-			<%= link_to image_tag("layout/contact_us.jpg", :border =>0) , {:controller => "home" } %>
+			<%= link_to image_tag("layout/home.jpg", :border =>0, :class => "hoverswap") , {:controller => "home" } %>
+			<%= link_to image_tag("layout/products.jpg", :border =>0, :class => "hoverswap") , {:controller => "home" } %>
+			<%= link_to image_tag("layout/view_cart.jpg", :border =>0, :class => "hoverswap") , {:controller => "home" } %>
+			<%= link_to image_tag("layout/contact_us.jpg", :border =>0, :class => "hoverswap") , {:controller => "home" } %>
 		</span>
 	</div>
         <%= yield %>
@@ -59,7 +71,7 @@
 					<td width="50%" valign="top" >
 						<table class="content-table">
 							<tr border="0">
-								<td align="right" valign="top" class="large-font">
+								<td align="right" valign="top" class="medium-font">
 									<p class="gotham-light-forced-line">CONTACT</p>
 									<p class="gotham-light-forced-line">US</p>
 								</td>

@@ -1559,3 +1559,40 @@ Processing HomeController#index (for 127.0.0.1 at 2010-02-15 23:47:08) [GET]
 Rendering template within layouts/application
 Rendering home/index
 Completed in 18ms (View: 16, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (2.7ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2010-02-16 12:24:58) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 64ms (View: 62, DB: 3) | 200 OK [http://localhost/]
+  [4;35;1mSQL (0.4ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2010-02-16 12:25:32) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 50ms (View: 49, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-16 12:25:32) [GET]
+
+ActionController::RoutingError (No route matches "/fonts/.swf" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2010-02-16 13:22:33) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 8ms (View: 6, DB: 0) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2010-02-16 13:26:49) [GET]
+Rendering template within layouts/application
+Rendering home/index
+Completed in 20ms (View: 18, DB: 0) | 200 OK [http://localhost/]

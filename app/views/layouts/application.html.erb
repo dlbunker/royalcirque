@@ -16,7 +16,8 @@
 				     $(".contact-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 105 });  
 				     $(".contact-us-2").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 30 });  
 				     $(".about-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 110 });  
-				     $(".gotham-light-forced-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 300, gridFitType: 0 });  
+				     $(".gotham-light-forced-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 300 });  
+				     $(".gotham-light-forced-long-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 500 });  
 				     $(".about-us-text").sifr({ font: "Gotham-Light", height: 100 });  
 				     $(".gotham-light").sifr({ font: "Gotham-Light", height: 150 });  
 				     $(".gotham-light-forced-line-50").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 50 });  
@@ -48,9 +49,9 @@
 	<div id="header-nav-bar">
 		<span>
 			<%= link_to image_tag("layout/home.jpg", :border =>0, :class => "hoverswap") , {:controller => "home" } %>
-			<%= link_to image_tag("layout/products.jpg", :border =>0, :class => "hoverswap") , {:controller => "home" } %>
-			<%= link_to image_tag("layout/view_cart.jpg", :border =>0, :class => "hoverswap") , {:controller => "home" } %>
-			<%= link_to image_tag("layout/contact_us.jpg", :border =>0, :class => "hoverswap") , {:controller => "home" } %>
+			<%= link_to image_tag("layout/products.jpg", :border =>0, :class => "hoverswap") , {:controller => "products" } %>
+			<%= link_to image_tag("layout/view_cart.jpg", :border =>0, :class => "hoverswap") , {:controller => "cart" } %>
+			<%= link_to image_tag("layout/contact_us.jpg", :border =>0, :class => "hoverswap") , {:controller => "contact_us" } %>
 		</span>
 	</div>
 	<% if flash[:notice] %>
@@ -85,7 +86,7 @@
 									<div class="contact-us-2">US</div>
 								</td>
 								<td align="left" valign="top" class="normal-font" style="padding-top: 0px !important;">
-									<% form_for :contact, :url => { :action => "send_mail" } do |f| %>
+									<% form_for :contact, :url => { :controller => "home", :action => "send_mail" } do |f| %>
 									 <table border="0" cellpadding="0" cellspacing="0">
 									 	<tr>
 									 		<td width="50%">

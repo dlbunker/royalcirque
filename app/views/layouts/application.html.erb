@@ -5,6 +5,7 @@
           <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
           <title><%=h yield(:title) %></title>
           <%= stylesheet_link_tag "royalcirque", :media => "screen" %>
+		  <!--[if gte IE 6]>		<%= stylesheet_link_tag 'royalcirque-ie' %>	<![endif]-->
           <%= javascript_include_tag "jquery-1.3.2.min",
 									 "jquery.sifr",
 									 "jquery.swfobject",
@@ -15,7 +16,7 @@
 				     $(".contact-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 105 });  
 				     $(".contact-us-2").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 30 });  
 				     $(".about-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 110 });  
-				     $(".gotham-light-forced-line").sifr({ font: "Gotham-Light", forceSingleLine: true, overX: 10 });  
+				     $(".gotham-light-forced-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 300, gridFitType: 0 });  
 				     $(".about-us-text").sifr({ font: "Gotham-Light", height: 100 });  
 				     $(".gotham-light").sifr({ font: "Gotham-Light", height: 150 });  
 				     $(".gotham-light-forced-line-50").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 50 });  
@@ -60,7 +61,7 @@
 		<div id="footer-content">
 			<table id="about-table" border="0" cellpadding="0" cellspacing="0">
 				<tr>
-					<td width="50%" valign="top" style="border-right: 1px solid white;">
+					<td width="50%" valign="top" style="border-right: 1px solid white;" height="150px">
 						<table class="content-table">
 							<tr border="0">
 								<td align="right" valign="top" class="large-font">
@@ -83,7 +84,7 @@
 									<div class="contact-us">CONTACT</div>
 									<div class="contact-us-2">US</div>
 								</td>
-								<td align="left" valign="top" class="normal-font">
+								<td align="left" valign="top" class="normal-font" style="padding-top: 0px !important;">
 									<% form_for :contact, :url => { :action => "send_mail" } do |f| %>
 									 <table border="0" cellpadding="0" cellspacing="0">
 									 	<tr>

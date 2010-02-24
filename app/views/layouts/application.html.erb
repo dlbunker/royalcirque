@@ -12,8 +12,13 @@
 	      <script type="text/javascript"><!--  
 				$(document).ready(function(){  
 				     $.sifr({ build: 436, version: 3, path: "/fonts/", save: true });  
+				     $(".contact-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 105 });  
+				     $(".contact-us-2").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 30 });  
+				     $(".about-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 110 });  
 				     $(".gotham-light-forced-line").sifr({ font: "Gotham-Light", forceSingleLine: true, overX: 10 });  
-				     $(".gotham-light").sifr({ font: "Gotham-Light", overY: 5 });  
+				     $(".about-us-text").sifr({ font: "Gotham-Light", height: 100 });  
+				     $(".gotham-light").sifr({ font: "Gotham-Light", height: 150 });  
+				     $(".gotham-light-forced-line-50").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 50 });  
 				});  
 				$(document).ready(function(){  
 					$(function() {
@@ -47,6 +52,9 @@
 			<%= link_to image_tag("layout/contact_us.jpg", :border =>0, :class => "hoverswap") , {:controller => "home" } %>
 		</span>
 	</div>
+	<% if flash[:notice] %>
+	    <div id="header-flash"><%= flash[:notice] %></div>
+	<% end %>
         <%= yield %>
 	<div id="banner-footer">
 		<div id="footer-content">
@@ -56,14 +64,14 @@
 						<table class="content-table">
 							<tr border="0">
 								<td align="right" valign="top" class="large-font">
-									<p class="gotham-light-forced-line">ABOUT</p>
-									<p class="gotham-light-forced-line">ROYAL</p>
-									<p class="gotham-light-forced-line">CIRQUE</p>
+									<div class="about-us">ABOUT</div>
+									<div class="about-us">ROYAL</div>
+									<div class="about-us">CIRQUE</div>
 								</td>
 								<td align="left" valign="top" class="normal-font">
-									<p class="gotham-light">We are a media distributor and publisher based in Salt Lake City, UT.  Royal Cirque Publishing produces high quality books and music ranging in a wide variety of topics.</p>
-									<p>&nbsp;</p>
-									<p class="gotham-light">If you are an author, buyer, printer, or distributor please feel free to contact us.</p>
+									<div class="about-us-text">
+										We are a media distributor and publisher based in Salt Lake City, UT. Royal Cirque Publishing produces high quality books and music ranging in a wide variety of topics. If you are an author, buyer, printer, or distributor please feel free to contact us.
+									</div>
 								</td>
 							</tr>
 						</table>
@@ -72,11 +80,39 @@
 						<table class="content-table">
 							<tr border="0">
 								<td align="right" valign="top" class="medium-font">
-									<p class="gotham-light-forced-line">CONTACT</p>
-									<p class="gotham-light-forced-line">US</p>
+									<div class="contact-us">CONTACT</div>
+									<div class="contact-us-2">US</div>
 								</td>
 								<td align="left" valign="top" class="normal-font">
-									<p>&nbsp;</p>
+									<% form_for :contact, :url => { :action => "send_mail" } do |f| %>
+									 <table border="0" cellpadding="0" cellspacing="0">
+									 	<tr>
+									 		<td width="50%">
+												<div class="gotham-light-forced-line-50">Name:</div>
+												<%= f.text_field (:name)%>
+											</td>
+											<td width="50%">
+												<div class="gotham-light-forced-line-50">Email:</div>
+												<%= f.text_field (:email)%>
+											</td>
+									 	</tr>
+										<tr>
+											<td width="50%" colspan="2" style="padding:0px !important;">
+											 	<table border="0" cellpadding="0" cellspacing="0">
+													<tr>
+												 		<td width="80%">
+															<div class="gotham-light-forced-line-50">Message:</div>
+															<%= f.text_area (:message, :rows => 1)%>
+														</td>
+														<td width="20%">
+															<%= f.submit "Submit" %>
+														</td>
+													</tr>
+												</table>
+											</td>
+									 	</tr>
+									 </table>
+									<% end %>
 								</td>
 							</tr>
 						</table>

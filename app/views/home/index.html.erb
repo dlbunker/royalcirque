@@ -1,6 +1,28 @@
 <% content_for :title, "Welcome to Royal Cirque Publishing" %>
 <div id="home-content-banner">
 	<div id="featured-content">
-		<br/><br/>SITE COMING SOON
+		<div id="featured-product">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<%= link_to image_tag("/home/get_featured_image/" + @product.id.to_s, :border =>0) , {:controller => "home" } %>
+					</td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0" class="content-table">
+							<tr>
+								<td class="large-font">
+									<div class="gotham-light-forced-line"><%= @product.title %></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="gotham-light"><%= @product.description %></div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100217063846) do
+ActiveRecord::Schema.define(:version => 20100226060133) do
 
   create_table "authors", :force => true do |t|
     t.string   "first_name"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(:version => 20100217063846) do
     t.binary   "featured_picture", :limit => 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pages",                                                              :default => ""
+    t.string   "size",                                                               :default => ""
   end
 
   add_index "products", ["author_id"], :name => "index_products_on_author_id"

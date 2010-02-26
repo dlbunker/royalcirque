@@ -5,7 +5,7 @@
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td>
-						<%= link_to image_tag("/home/get_featured_image/" + @product.id.to_s, :border =>0) , {:controller => "home" } %>
+						<%= link_to image_tag("/home/get_featured_image/" + @product.id.to_s, :border =>0) , {:controller => "products", :action => "detail", :id => @product.id} %>
 					</td>
 					<td>
 						<table border="0" cellspacing="0" cellpadding="0" class="content-table">

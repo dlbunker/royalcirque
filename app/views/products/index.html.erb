@@ -2,15 +2,50 @@
 <div id="home-content-banner">
 	<div id="featured-content">
 		<div id="featured-product">
-			<table border="0" cellspacing="0" cellpadding="0">
+			<table border="0" cellspacing="0" cellpadding="0" class="content-table" width="100%">
+				<tr>
+					<td class="large-font">
+						<div class="gotham-light-forced-extra-long-line">Royal Cirque Publishing Media and Products</div>
+					</td>
+				</tr>
 				<tr>
 					<td>
-						<table border="0" cellspacing="0" cellpadding="0" class="content-table">
+						<table border="0" cellspacing="0" cellpadding="0" class="content-table" width="96%">
+							<% if @products.size > 20 %>
 							<tr>
-								<td class="large-font">
-									<div class="gotham-light-forced-long-line">Coming Soon - Please check back shortly</div>
+								<td class="normal-font" colspan="4">
+									<div class="gotham-light-forced-long-line"><%= will_paginate @products %></div>
 								</td>
 							</tr>
+							<% end %>
+							<%- @products.each do |product| -%>
+							<tr>
+								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" width="155px">
+									<%= link_to image_tag("/products/get_thumb_image/" + product.id.to_s, :border =>0, :style => ' border: 1px solid #6E6E6C;') , {:controller => "products", :action => "detail", :id => product.id } %>
+								</td>
+								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" valign="top"  width="150px">
+									<div class="gotham-light-forced-long-line medium-font"><%= product.product_type.name %><br/><br/></div>
+									<div class="gotham-light-forced-long-line medium-font"><%= product.title %></div>
+									<div class="gotham-light-forced-long-line normal-font">by <%= product.author.first_name %> <%= product.author.last_name %></div>
+								</td>
+								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" valign="top" width="300px">
+									<div class="gotham-light-300"><%= product.description[0, product.description.index(".")] %>...<br/><br/><%= link_to 'View More', {:controller => "products", :action => "detail", :id => product.id} %></div>
+								</td>
+								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" valign="top" width="150px">
+									<% form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
+									<div class="gotham-light-forced-long-line medium-font"><%= product.price %> each</div><br/>
+									<div><%= f.text_field (:qty, :style => 'width: 20px;', :value => "1")%> <%= f.submit "Add to Cart" %></div>
+									<% end %>
+								</td>
+							</tr>
+							<%- end -%>
+							<% if @products.size > 20 %>
+							<tr>
+								<td class="normal-font" colspan="4">
+									<div class="gotham-light-forced-long-line"><%= will_paginate @products %></div>
+								</td>
+							</tr>
+							<% end %>
 						</table>
 					</td>
 				</tr>

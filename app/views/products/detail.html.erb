@@ -1,0 +1,44 @@
+<% content_for :title, "Welcome to Royal Cirque Publishing" %>
+<div id="detail-content-banner">
+	<div id="detail-content">
+		<div id="product-detail">
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td valign="top">
+						<%= link_to image_tag("/products/get_picture_image/" + @product.id.to_s, :border =>0, :style => 'padding: 10px;') , {:controller => "home" } %>
+					</td>
+					<td valign="top">
+						<table border="0" cellspacing="0" cellpadding="0" class="content-table">
+							<tr>
+								<td>
+									<div class="gotham-light-forced-line large-font"><%= @product.title %></div>
+									<div class="gotham-light-forced-long-line medium-font">by <%= @product.author.first_name %> <%= @product.author.last_name %></div>
+									<div class="gotham-light-forced-long-line medium-font"><%= @product.product_type.name %> SKU: <%= @product.sku %></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="gotham-light"><%= @product.description %></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="gotham-light-forced-line">Pages: <%= @product.pages %></div>
+									<div class="gotham-light-forced-line">Size: <%= @product.size %></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="gotham-light-forced-line medium-font">Price: $<%= @product.price %></div>
+									<% form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
+									<div><%= f.text_field (:qty, :style => 'width: 20px;', :value => "1")%> <%= f.submit "Add to Cart" %></div>
+									<% end %>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>

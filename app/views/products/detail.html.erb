@@ -1,4 +1,4 @@
-<% content_for :title, "Welcome to Royal Cirque Publishing" %>
+<% content_for :title, "Royal Cirque Publishing - #{@product.title}" %>
 <div id="detail-content-banner">
 	<div id="detail-content">
 		<div id="product-detail">
@@ -18,13 +18,14 @@
 							</tr>
 							<tr>
 								<td>
-									<div class="gotham-light"><%= @product.description %></div>
+									<div class="gotham-light-600"><%= @product.description %></div>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<div class="gotham-light-forced-line">Pages: <%= @product.pages %></div>
 									<div class="gotham-light-forced-line">Size: <%= @product.size %></div>
+									<div class="gotham-light-forced-long-line">Website: <a href="<%= @product.website %>" target="_blank"><%= @product.website %></a></div>
 								</td>
 							</tr>
 							<tr>
@@ -32,6 +33,7 @@
 									<div class="gotham-light-forced-line medium-font">Price: $<%= @product.price %></div>
 									<% form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
 									<div><%= f.text_field (:qty, :style => 'width: 20px;', :value => "1")%> <%= f.submit "Add to Cart" %></div>
+									<%= f.hidden_field (:product_id, :value => @product.id)%>
 									<% end %>
 								</td>
 							</tr>

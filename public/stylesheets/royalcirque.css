@@ -225,10 +225,18 @@ body {
 	font-size: 11px;
 }
 
+.content-table div.medium-bold-font {
+	font-size: 20px;
+}
+
 .content-table td {
 	padding: 10px;
 }
 
 .content-table td p {
 	margin: 0px;
+}
+
+#cart-table td {
+	padding: 5px;
 }

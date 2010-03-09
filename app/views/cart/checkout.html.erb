@@ -1,0 +1,16 @@
+<% content_for :title, "Royal Cirque Publishing Checkout" %>
+<div id="detail-content-banner">
+	<div id="detail-content">
+		<div id="product-detail">
+			<% form_for :cart, :url => { :controller => "cart", :action => "checkout" } do |f| %>
+			<table id="cart-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
+				<tr>
+					<td class="large-font" colspan="4" align="center">
+						<div class="gotham-light-forced-extra-long-line">Coming Soon...Please check back shortly</div>
+					</td>
+				</tr>
+			</table>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,20 +1,57 @@
-<% content_for :title, "Welcome to Royal Cirque Publishing" %>
-<div id="home-content-banner">
-	<div id="featured-content">
-		<div id="featured-product">
-			<table border="0" cellspacing="0" cellpadding="0">
+<% content_for :title, "Royal Cirque Publishing Shopping Cart" %>
+<div id="detail-content-banner">
+	<div id="detail-content">
+		<div id="product-detail">
+			<% form_for :cart, :url => { :controller => "cart", :action => "checkout" } do |f| %>
+			<table id="cart-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
 				<tr>
-					<td>
-						<table border="0" cellspacing="0" cellpadding="0" class="content-table">
-							<tr>
-								<td class="large-font">
-									<div class="gotham-light-forced-long-line">Coming Soon - Please check back shortly</div>
-								</td>
-							</tr>
-						</table>
+					<td class="large-font" colspan="4" align="center">
+						<div class="gotham-light-forced-extra-long-line">Shopping Cart</div>
 					</td>
 				</tr>
+				<%- if @cart_items.nil? -%>
+				<tr>
+					<td valign="top" colspan="4" align="center">
+						<div class="gotham-light-forced-long-line medium-font">You have no products in your cart.</div>
+					</td>
+				</tr>
+				<%- else -%>
+				<tr>
+					<td valign="top" width="400px" colspan="2" style="border-bottom: 1px solid #6E6E6C;">
+						<div class="gotham-light-forced-long-line medium-bold-font">Product:</div>
+					</td>
+					<td valign="top" width="150px" style="border-bottom: 1px solid #6E6E6C;">
+						<div class="gotham-light-forced-long-line medium-bold-font">Price:</div>
+					</td>
+					<td valign="top" width="150px" style="border-bottom: 1px solid #6E6E6C;">
+						<div class="gotham-light-forced-long-line medium-bold-font">Qty:</div>
+					</td>
+				</tr>
+				<%- @cart_items.each do |item| -%>
+				<tr>
+					<td valign="top" style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;">
+						<%= image_tag("/products/get_thumb_image/" + item.product.id.to_s, :border =>0, :style => ' border: 1px solid #6E6E6C;') %>
+					</td>
+					<td valign="top" style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;">
+						<div class="gotham-light-forced-line large-font" width="400px"><%= item.product.title %></div>
+						<div class="gotham-light-forced-long-line medium-font" width="400px">by <%= item.product.author.first_name %> <%= item.product.author.last_name %></div>
+					</td>
+					<td valign="top" style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;">
+						<div class="gotham-light-forced-long-line medium-font" width="150px">$<%= item.product.price %></div>
+					</td>
+					<td valign="top" style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;">
+						<div><%= f.text_field ("prod_#{item.product.id}", :style => 'width: 20px;', :value => item.quantity)%></div>
+					</td>
+				</tr>
+				<%- end -%>
+				<tr>
+					<td colspan="4" align="center" style="border-top: 1px solid #6E6E6C;">
+						<div><%= f.submit "Checkout" %></div>
+					</td>
+				</tr>
+				<%- end -%>
 			</table>
+			<% end %>
 		</div>
 	</div>
 </div>

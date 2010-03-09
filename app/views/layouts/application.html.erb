@@ -3,6 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
           <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		  <meta name="description" content="<%=h yield(:description) %>" />
+		  <meta name="keywords" content="<%=h yield(:keywords) %>" />
           <title><%=h yield(:title) %></title>
           <%= stylesheet_link_tag "royalcirque", :media => "screen" %>
 		  <!--[if gte IE 6]>		<%= stylesheet_link_tag 'royalcirque-ie' %>	<![endif]-->
@@ -15,13 +17,14 @@
 				     $.sifr({ build: 436, version: 3, path: "/fonts/", save: true });  
 				     $(".contact-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 105 });  
 				     $(".contact-us-2").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 30 });  
-				     $(".about-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 110 });  
+				     $(".about-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 123 });  
 				     $(".gotham-light-forced-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 300 });  
 				     $(".gotham-light-forced-long-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 500 });  
 				     $(".gotham-light-forced-extra-long-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 700 });  
 				     $(".about-us-text").sifr({ font: "Gotham-Light", height: 100 });  
 				     $(".gotham-light").sifr({ font: "Gotham-Light", height: 150 });  
 				     $(".gotham-light-300").sifr({ font: "Gotham-Light", height: 150, width: 300 });  
+				     $(".gotham-light-600").sifr({ font: "Gotham-Light", height: 150, width: 600 });  
 				     $(".gotham-light-forced-line-50").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 50 });  
 				});  
 				$(document).ready(function(){  

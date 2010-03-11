@@ -1,0 +1,22 @@
+<% content_for :title, "Royal Cirque Publishing - Thank You for your Order" %>
+<div id="home-content-banner">
+	<div id="featured-content">
+		<div id="featured-product">
+			<% form_for :customer, :url => { :controller => "cart", :action => "review_order" } do |f| %>
+			<table id="checkout-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
+				<tr>
+					<td class="large-font" align="center" style="border-bottom: 1px solid #6E6E6C">
+						<div class="gotham-light-forced-extra-long-line">Thank You for your Order</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="medium-font" valign="top">
+						If your order requires shipping it will be sent within 2 business days. <br/><br/>
+						If your order is a downloadable item, such as music, you will receive an email with the download instructions within 24 hours.
+					</td>
+				</tr>
+			</table>
+			<% end %>
+		</div>
+	</div>
+</div>

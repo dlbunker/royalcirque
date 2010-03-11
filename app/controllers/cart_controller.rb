@@ -1,6 +1,8 @@
 class CartController < ApplicationController
   layout "application"
   
+  before_filter :redirect_to_ssl, :except => [:index]
+  
   def index
     @cart_items = nil
     
@@ -37,4 +39,88 @@ class CartController < ApplicationController
 
   def checkout
   end
+
+  def place_order
+    o = Order.find(params[:customer][:order_id])
+    o.status = "Complete"
+    o.save
+    
+    session[:cart_item] = nil
+    
+    redirect_to :action => 'finished'
+  end
+
+  def review_order
+    # see if customer already exists
+    @cust = Customer.new
+    @cust.first_name = params[:customer][:first_name]
+    @cust.last_name = params[:customer][:last_name]
+    @cust.email = params[:customer][:email]
+    @cust.agree_to_receive_info = params[:customer][:agree_to_receive_info]
+    existing_cust = Customer.find_by_first_name_and_last_name_and_email(@cust.first_name, @cust.last_name, @cust.email)
+    
+    if existing_cust.nil?
+      @cust.save
+    else
+      @cust = existing_cust
+    end
+    
+    # add a new order for the customer
+    @order = Order.new
+    @order.ship_name = params[:customer][:ship_name]
+    @order.ship_street_1 = params[:customer][:ship_street_1]
+    @order.ship_street_2 = params[:customer][:ship_street_2]
+    @order.ship_city = params[:customer][:ship_city]
+    @order.ship_state = params[:customer][:ship_state]
+    @order.ship_zip = params[:customer][:ship_zip]
+    @order.bill_name = params[:customer][:bill_name]
+    @order.bill_street_1 = params[:customer][:bill_street_1]
+    @order.bill_street_2 = params[:customer][:bill_street_2]
+    @order.bill_city = params[:customer][:bill_city]
+    @order.bill_state = params[:customer][:bill_state]
+    @order.bill_zip = params[:customer][:bill_zip]
+    @order.card_number = params[:customer][:card_number]
+    @order.card_expire_date = params[:customer][:card_expire_date]
+    @order.card_cvv2 = params[:customer][:card_cvv2]
+    @order.status = "Pending"
+    @order.subtotal = 0
+    @order.discount = 0
+    @order.tax = 0
+    @order.total = 0
+    @order.shipping_total = 0
+    
+    @cust.orders << @order
+    @cust.save
+
+    # add the order details
+    session[:cart_item].each do |item|
+      od = OrderDetail.new
+      od.product = item.product
+      od.quantity = item.quantity
+      od.subtotal = item.product.price * od.quantity
+      od.discount = 0 #TODO
+      od.tax = 0 #no tax for out of state
+      od.tax = (od.subtotal - od.discount) * 0.068 if @order.bill_state.downcase == "ut" || @order.bill_state.downcase == "utah"
+      od.total = (od.subtotal - od.discount) + od.tax
+      
+      @order.subtotal = @order.subtotal + od.subtotal
+      @order.discount = @order.discount + od.discount
+      @order.tax = @order.tax + od.tax
+      @order.total = @order.total + od.total
+
+      @order.order_details << od
+    end
+    
+    @order.save
+  end
+
+  private
+    def redirect_to_ssl
+      if request.ssl? || local_request?
+        return true
+      else
+        redirect_to url_for params.merge({:protocol => 'https://', :host => 'royalcirquepub.securesites.com'})
+        return false
+      end
+    end
 end

@@ -1,12 +1,145 @@
 <% content_for :title, "Royal Cirque Publishing Checkout" %>
-<div id="detail-content-banner">
-	<div id="detail-content">
+<div id="checkout-content-banner">
+	<div id="checkout-content">
 		<div id="product-detail">
-			<% form_for :cart, :url => { :controller => "cart", :action => "checkout" } do |f| %>
-			<table id="cart-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
+			<% form_for :customer, :url => { :controller => "cart", :action => "review_order" } do |f| %>
+			<table id="checkout-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
 				<tr>
-					<td class="large-font" colspan="4" align="center">
-						<div class="gotham-light-forced-extra-long-line">Coming Soon...Please check back shortly</div>
+					<td class="large-font" colspan="2" align="center">
+						<div class="gotham-light-forced-extra-long-line">Checkout</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" class="normal-font" valign="top">
+						<table id="customer-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="250px">
+							<tr>
+								<td>
+									Customer Information
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<%= f.label :first_name %><br/>
+									<%= f.text_field :first_name, :style => 'width: 150px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<%= f.label :last_name %><br/>
+									<%= f.text_field :last_name, :style => 'width: 150px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<%= f.label :email %><br/>
+									<%= f.text_field :email, :style => 'width: 150px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<%= f.check_box :agree_to_receive_info %>
+									Receive Emails about Royal Cirque Products?
+								</td>
+							</tr>
+						</table>
+						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="250px">
+							<tr>
+								<td>
+									Shipping Information
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Ship to name<br/>
+									<%= f.text_field :ship_name, :style => 'width: 150px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Street 1<br/>
+									<%= f.text_field :ship_street_1, :style => 'width: 150px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Street 2<br/>
+									<%= f.text_field :ship_street_2, :style => 'width: 150px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									City, State, Zip<br/>
+									<%= f.text_field :ship_city, :style => 'width: 100px;'%>
+									<%= f.text_field :ship_state, :style => 'width: 50px;'%>
+									<%= f.text_field :ship_zip, :style => 'width: 50px;'%>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="50%" class="normal-font" valign="top">
+						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="250px">
+							<tr>
+								<td>
+									Billing Information
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Name on card<br/>
+									<%= f.text_field :bill_name, :style => 'width: 150px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Street 1<br/>
+									<%= f.text_field :bill_street_1, :style => 'width: 150px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Street 2<br/>
+									<%= f.text_field :bill_street_2, :style => 'width: 150px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									City, State, Zip<br/>
+									<%= f.text_field :bill_city, :style => 'width: 100px;'%>
+									<%= f.text_field :bill_state, :style => 'width: 50px;'%>
+									<%= f.text_field :bill_zip, :style => 'width: 50px;'%>
+								</td>
+							</tr>
+						</table>
+						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="250px">
+							<tr>
+								<td>
+									Credit Card Information
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Card number<br/>
+									<%= f.text_field :card_number, :style => 'width: 150px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Card Expiration Date (MM/YY)<br/>
+									<%= f.text_field :card_expire_date, :style => 'width: 50px;'%>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Card CVV2 Number<br/>
+									<%= f.text_field :card_cvv2, :style => 'width: 50px;'%>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<div><%= f.submit "Review Order" %></div>
 					</td>
 				</tr>
 			</table>

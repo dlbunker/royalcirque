@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100309062555) do
+ActiveRecord::Schema.define(:version => 20100311011945) do
 
   create_table "authors", :force => true do |t|
     t.string   "first_name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20100309062555) do
     t.decimal  "total",      :precision => 8, :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quantity"
   end
 
   add_index "order_details", ["order_id"], :name => "index_order_details_on_order_id"

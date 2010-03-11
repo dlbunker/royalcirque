@@ -1,0 +1,150 @@
+<% content_for :title, "Royal Cirque Publishing Review Order" %>
+<div id="checkout-content-banner">
+	<div id="checkout-content">
+		<div id="product-detail">
+			<% form_for :customer, :url => { :controller => "cart", :action => "place_order" } do |f| %>
+			<%= f.hidden_field (:order_id, :value => @order.id)%>
+			<table id="checkout-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
+				<tr>
+					<td class="large-font" colspan="3" align="center" style="border-bottom: 1px solid #6E6E6C">
+						<div class="gotham-light-forced-extra-long-line">Review Order</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="33%" class="medium-font" valign="top">
+						<table id="customer-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
+							<tr>
+								<td>
+									<%= @cust.first_name %> <%= @cust.last_name %><br/>
+									<%= @cust.email %><br/><br/>
+									Card Number: ************<%= @order.card_number[@order.card_number.size - 4, @order.card_number.size] %>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="33%" class="medium-font" valign="top">
+						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
+							<tr>
+								<td>
+									Ship To:
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<%= @order.ship_name %><br/>
+									<%= @order.ship_street_1 %><br/>
+									<%= @order.ship_street_2 %><br/>
+									<%= @order.ship_city %>, <%= @order.ship_state %> <%= @order.ship_zip %>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="33%" class="medium-font" valign="top">
+						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
+							<tr>
+								<td>
+									Bill To:
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<%= @order.bill_name %><br/>
+									<%= @order.bill_street_1 %><br/>
+									<%= @order.bill_street_2 %><br/>
+									<%= @order.bill_city %>, <%= @order.bill_state %> <%= @order.bill_zip %>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center" style="border-top: 1px solid #6E6E6C">
+						Order Details
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="medium-font" valign="top">
+						<table id="customer-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
+							<tr>
+								<td>
+									Product
+								</td>
+								<td>
+									Quantity
+								</td>
+								<td align="right">
+									Price
+								</td>
+								<td align="right">
+									Subtotal
+								</td>
+								<td align="right">
+									Discount
+								</td>
+								<td align="right">
+									Tax
+								</td>
+								<td align="right">
+									Total
+								</td>
+							</tr>
+							<%- @order.order_details.each do |od| -%>
+								<tr>
+									<td>
+										<%= od.product.title %>
+									</td>
+									<td>
+										<%= od.quantity %>
+									</td>
+									<td align="right">
+										<%= number_to_currency od.product.price %>
+									</td>
+									<td align="right">
+										<%= number_to_currency od.subtotal %>
+									</td>
+									<td align="right">
+										<%= number_to_currency od.discount %>
+									</td>
+									<td align="right">
+										<%= number_to_currency od.tax %>
+									</td>
+									<td align="right">
+										<%= number_to_currency od.total %>
+									</td>
+								</tr>
+							<%- end -%>
+							<tr>
+								<td>
+									Order Total
+								</td>
+								<td>
+								</td>
+								<td>
+								</td>
+								<td align="right" style="border-top: 1px solid #6E6E6C">
+									<%= number_to_currency @order.subtotal %>
+								</td>
+								<td align="right" style="border-top: 1px solid #6E6E6C">
+									<%= number_to_currency @order.discount %>
+								</td>
+								<td align="right" style="border-top: 1px solid #6E6E6C">
+									<%= number_to_currency @order.tax %>
+								</td>
+								<td align="right" style="border-top: 1px solid #6E6E6C">
+									<%= number_to_currency @order.total %>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center" style="border-top: 1px solid #6E6E6C">
+						By placing this order your credit card will be charged and your order will be processed.<br/><br/>
+						<div><%= f.submit "Place Order" %></div>
+					</td>
+				</tr>
+			</table>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,7 +1,7 @@
 <% content_for :title, "Royal Cirque Publishing Books and Media" %>
-<div id="home-content-banner">
-	<div id="featured-content">
-		<div id="featured-product">
+<div id="home-content-banner" style="height:900px;">
+	<div id="featured-content" style="height:900px; background-image: none;background-color: #e5e5e3;">
+		<div id="featured-product" style="height:900px;">
 			<table border="0" cellspacing="0" cellpadding="0" class="content-table" width="100%">
 				<tr>
 					<td class="large-font">
@@ -33,7 +33,7 @@
 								</td>
 								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" valign="top" width="150px">
 									<% form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
-									<div class="gotham-light-forced-long-line medium-font"><%= product.price %> each</div><br/>
+									<div class="gotham-light-forced-long-line medium-font">$<%= product.price %> each</div><br/>
 									<%= f.hidden_field (:product_id, :value => product.id)%>
 									<div><%= f.text_field (:qty, :style => 'width: 20px;', :value => "1")%> <%= f.submit "Add to Cart" %></div>
 									<% end %>

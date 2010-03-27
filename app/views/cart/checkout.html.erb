@@ -11,7 +11,7 @@
 				</tr>
 				<tr>
 					<td width="50%" class="normal-font" valign="top">
-						<table id="customer-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="250px">
+						<table id="customer-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="260px">
 							<tr>
 								<td>
 									Customer Information
@@ -42,7 +42,7 @@
 								</td>
 							</tr>
 						</table>
-						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="250px">
+						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="260px">
 							<tr>
 								<td>
 									Shipping Information
@@ -77,10 +77,27 @@
 						</table>
 					</td>
 					<td width="50%" class="normal-font" valign="top">
-						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="250px">
+						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="260px">
 							<tr>
 								<td>
-									Billing Information
+									Billing Information - 
+									<input type="checkbox" id="copy-shipping-info" />
+									Click here if your Billing info is the same as your Shipping info
+							      <script type="text/javascript"><!--  
+										$(document).ready(function(){  
+											$('#copy-shipping-info').click(function(){
+												if($('#copy-shipping-info:checked')) {
+													$('#customer_bill_name').val($('#customer_ship_name').val());
+													$('#customer_bill_street_1').val($('#customer_ship_street_1').val());
+													$('#customer_bill_street_2').val($('#customer_ship_street_2').val());
+													$('#customer_bill_city').val($('#customer_ship_city').val());
+													$('#customer_bill_state').val($('#customer_ship_state').val());
+													$('#customer_bill_zip').val($('#customer_ship_zip').val());
+												}
+											})
+										});
+										// -->
+							      </script>
 								</td>
 							</tr>
 							<tr>
@@ -110,7 +127,8 @@
 								</td>
 							</tr>
 						</table>
-						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="250px">
+						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="260px">
+							<% if @total > 0 %>
 							<tr>
 								<td>
 									Credit Card Information
@@ -134,6 +152,13 @@
 									<%= f.text_field :card_cvv2, :style => 'width: 50px;'%>
 								</td>
 							</tr>
+							<% else %>
+							<tr>
+								<td>
+									Your Order Total was $0.00 so you do not need to input any credit card information
+								</td>
+							</tr>
+							<% end %>
 						</table>
 					</td>
 				</tr>

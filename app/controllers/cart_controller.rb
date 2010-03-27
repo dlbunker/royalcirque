@@ -38,6 +38,11 @@ class CartController < ApplicationController
   end
 
   def checkout
+    @total = 0
+    
+    session[:cart_item].each do |item|
+      @total = @total + (item.quantity.to_i * item.product.price)
+    end
   end
 
   def place_order
@@ -45,6 +50,8 @@ class CartController < ApplicationController
     o.status = "Complete"
     o.save
     
+    RoyalcirqueMailer::deliver_order_received(o.customer, o)
+
     session[:cart_item] = nil
     
     redirect_to :action => 'finished'

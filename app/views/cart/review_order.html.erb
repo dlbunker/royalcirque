@@ -114,12 +114,30 @@
 								</tr>
 							<%- end -%>
 							<tr>
-								<td>
+								<td style="border-top: 1px solid #6E6E6C">
+									Shipping
+								</td>
+								<td style="border-top: 1px solid #6E6E6C">
+								</td>
+								<td style="border-top: 1px solid #6E6E6C">
+								</td>
+								<td align="right" style="border-top: 1px solid #6E6E6C">
+								</td>
+								<td align="right" style="border-top: 1px solid #6E6E6C">
+								</td>
+								<td align="right" style="border-top: 1px solid #6E6E6C">
+								</td>
+								<td align="right" style="border-top: 1px solid #6E6E6C">
+									<%= number_to_currency 0 %>
+								</td>
+							</tr>
+							<tr>
+								<td style="border-top: 1px solid #6E6E6C">
 									Order Total
 								</td>
-								<td>
+								<td style="border-top: 1px solid #6E6E6C">
 								</td>
-								<td>
+								<td style="border-top: 1px solid #6E6E6C">
 								</td>
 								<td align="right" style="border-top: 1px solid #6E6E6C">
 									<%= number_to_currency @order.subtotal %>

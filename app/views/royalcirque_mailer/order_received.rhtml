@@ -1,0 +1,60 @@
+
+<h3>This is an Auto-generated mail from Royal Cirque Publishing Checkout.</h3>
+<br />
+<table>
+	<tr>
+		<td width="40%">
+			Name :
+		</td>
+		<td width="60%">
+			<%= @name%>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Email :
+		</td>
+		<td>
+			<%= @email%>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Subject :
+		</td>
+		<td>
+			<%= @sub%>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Total :
+		</td>
+		<td>
+			<%= @order.total%>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Products Ordered
+		</td>
+		<td>
+		</td>
+	</tr>
+	<% @order.order_details.each do |od| %>
+	<tr>
+		<td>
+			<%= od.product.title %>
+		</td>
+		<td>
+			<%= od.quantity %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+<br />
+<div>
+	Thanks,<br />
+	Admin Robot<br />
+	Royal Cirque Publishing<br />
+</div>

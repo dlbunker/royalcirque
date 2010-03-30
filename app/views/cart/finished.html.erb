@@ -11,8 +11,15 @@
 				</tr>
 				<tr>
 					<td class="medium-font" valign="top">
-						If your order requires shipping it will be sent within 2 business days. <br/><br/>
-						If your order is a downloadable item, such as music, you will receive an email with the download instructions within 24 hours.
+						<% @o.order_details.each do |od| %>
+							<% if od.product.requires_shipping? %>
+								<%= od.product.title %> will ship within 2 business days.<br/>
+							<% else %>
+								<%= link_to "Click here to download " + od.product.title, :controller => 'products', :action => "download", :id => od.product.id, :class => 'medium-font' %><br/>
+							<% end %>
+						<% end %>
+						<br/><br/>
+						Please contact us if you have any questions.
 					</td>
 				</tr>
 			</table>

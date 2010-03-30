@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100311011945) do
+ActiveRecord::Schema.define(:version => 20100330041222) do
 
   create_table "authors", :force => true do |t|
     t.string   "first_name"
@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(:version => 20100311011945) do
     t.string   "size",                                                                :default => ""
     t.string   "website"
     t.boolean  "requires_shipping"
+    t.string   "file_path"
+    t.string   "mime_type"
   end
 
   add_index "products", ["author_id"], :name => "index_products_on_author_id"

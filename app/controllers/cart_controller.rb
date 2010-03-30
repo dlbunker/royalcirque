@@ -46,15 +46,14 @@ class CartController < ApplicationController
   end
 
   def place_order
-    o = Order.find(params[:customer][:order_id])
-    o.status = "Complete"
-    o.save
+    @o = Order.find(params[:customer][:order_id])
+    @o.status = "Complete"
+    @o.save
     
-    RoyalcirqueMailer::deliver_order_received(o.customer, o)
+    RoyalcirqueMailer::deliver_order_received(@o.customer, @o)
 
-    session[:cart_item] = nil
-    
-    redirect_to :action => 'finished'
+    session[:cart_item] = nil    
+    render :action => 'finished'
   end
 
   def review_order
@@ -107,7 +106,7 @@ class CartController < ApplicationController
       od.subtotal = item.product.price * od.quantity
       od.discount = 0 #TODO
       od.tax = 0 #no tax for out of state
-      od.tax = (od.subtotal - od.discount) * 0.068 if @order.bill_state.downcase == "ut" || @order.bill_state.downcase == "utah"
+      od.tax = (od.subtotal - od.discount) * 0.068 if (!@order.bill_state.nil? && @order.bill_state.downcase == "ut") || (!@order.bill_state.nil? && @order.bill_state.downcase == "utah")
       od.total = (od.subtotal - od.discount) + od.tax
       
       @order.subtotal = @order.subtotal + od.subtotal

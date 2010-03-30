@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   layout "application"
   
   def index
-    @products = Product.paginate :per_page => 20, :page => params[:page], :order => 'title'
+    @products = Product.paginate :per_page => 20, :page => params[:page], :order => 'id'
   end
 
   def detail
@@ -18,4 +18,9 @@ class ProductsController < ApplicationController
 	  prod = Product.find(params[:id])
 		send_data(prod.picture, :filename => 'product-image.jpg', :type => 'image/jpeg', :disposition => 'inline')
 	end
+	
+  def download
+	  prod = Product.find(params[:id])
+    send_file prod.file_path, :type => prod.mime_type 
+  end	
 end

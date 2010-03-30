@@ -1,7 +1,7 @@
 <% content_for :title, "Royal Cirque Publishing Shopping Cart" %>
-<div id="detail-content-banner">
-	<div id="detail-content">
-		<div id="product-detail">
+<div id="detail-content-banner" style="height:470px;">
+	<div id="detail-content" style="height:470px;">
+		<div id="product-detail" style="height:470px;">
 			<% form_for :cart, :url => { :controller => "cart", :action => "checkout" } do |f| %>
 			<table id="cart-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
 				<tr>
@@ -33,11 +33,11 @@
 						<%= image_tag("/products/get_thumb_image/" + item.product.id.to_s, :border =>0, :style => ' border: 1px solid #6E6E6C;') %>
 					</td>
 					<td valign="top" style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;">
-						<div class="gotham-light-forced-line large-font" width="400px"><%= item.product.title %></div>
-						<div class="gotham-light-forced-long-line medium-font" width="400px">by <%= item.product.author.first_name %> <%= item.product.author.last_name %></div>
+						<div class="large-font" width="400px"><%= item.product.title %></div>
+						<div class="medium-font" width="400px">by <%= item.product.author.first_name %> <%= item.product.author.last_name %></div>
 					</td>
 					<td valign="top" style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;">
-						<div class="gotham-light-forced-long-line medium-font" width="150px">$<%= item.product.price %></div>
+						<div class="medium-font" width="150px"><%= number_to_currency item.product.price %></div>
 					</td>
 					<td valign="top" style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;">
 						<div><%= f.text_field ("prod_#{item.product.id}", :style => 'width: 20px;', :value => item.quantity)%></div>

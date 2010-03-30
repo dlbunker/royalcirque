@@ -78,6 +78,7 @@
 					</td>
 					<td width="50%" class="normal-font" valign="top">
 						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="260px">
+							<% if @total > 0 %>
 							<tr>
 								<td>
 									Billing Information - 
@@ -126,6 +127,13 @@
 									<%= f.text_field :bill_zip, :style => 'width: 50px;'%>
 								</td>
 							</tr>
+							<% else %>
+							<tr>
+								<td>
+									Your Order Total was $0.00 so you do not need to input any billing information
+								</td>
+							</tr>
+							<% end %>
 						</table>
 						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="260px">
 							<% if @total > 0 %>

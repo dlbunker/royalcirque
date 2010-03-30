@@ -17,7 +17,7 @@
 								<td>
 									<%= @cust.first_name %> <%= @cust.last_name %><br/>
 									<%= @cust.email %><br/><br/>
-									Card Number: ************<%= @order.card_number[@order.card_number.size - 4, @order.card_number.size] %>
+									Card Number: ************<%= @order.card_number[@order.card_number.size - 4, @order.card_number.size] if !@order.card_number.nil?%>
 								</td>
 							</tr>
 						</table>

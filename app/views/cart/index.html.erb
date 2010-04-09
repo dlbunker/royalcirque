@@ -1,7 +1,13 @@
 <% content_for :title, "Royal Cirque Publishing Shopping Cart" %>
+<% if !@cart_items.nil? %>
+<div id="detail-content-banner" style="height:<%= (@cart_items.size * 210) + 80 -%>px;">
+	<div id="detail-content" style="height:<%= (@cart_items.size * 210) + 80 -%>px;">
+		<div id="product-detail" style="height:<%= (@cart_items.size * 210) + 80 -%>px;">
+<% else %>
 <div id="detail-content-banner" style="height:470px;">
 	<div id="detail-content" style="height:470px;">
 		<div id="product-detail" style="height:470px;">
+<% end %>
 			<% form_for :cart, :url => { :controller => "cart", :action => "checkout" } do |f| %>
 			<table id="cart-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
 				<tr>
@@ -46,7 +52,7 @@
 				<%- end -%>
 				<tr>
 					<td colspan="4" align="center" style="border-top: 1px solid #6E6E6C;">
-						<div><%= f.submit "Checkout" %></div>
+						<div>Enter Coupon Code (If Any): <%= f.text_field :coupon, :style => 'width: 100px;'%></div> <div><%= f.submit "Checkout" %></div>
 					</td>
 				</tr>
 				<%- end -%>

@@ -23,7 +23,11 @@
 							</tr>
 							<tr>
 								<td>
-									<div class="gotham-light-forced-line">Pages: <%= @product.pages %></div>
+									<% if @product.product_type.name != "Music" %>
+										<div class="gotham-light-forced-line">Pages: <%= @product.pages %></div>
+									<% else %>
+										<div class="gotham-light-forced-line">Songs: <%= @product.pages %></div>
+									<% end %>
 									<div class="gotham-light-forced-line">Size: <%= @product.size %></div>
 									<div class="gotham-light-forced-long-line">Website: <a href="<%= @product.website %>" target="_blank"><%= @product.website %></a></div>
 								</td>

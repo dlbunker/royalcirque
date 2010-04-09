@@ -13,9 +13,9 @@
 					<td class="medium-font" valign="top">
 						<% @o.order_details.each do |od| %>
 							<% if od.product.requires_shipping? %>
-								<%= od.product.title %> will ship within 2 business days.<br/>
+								- <%= od.product.title %> <%= od.product.product_type.name %> will ship within 2 business days.<br/>
 							<% else %>
-								<%= link_to "Click here to download " + od.product.title, :controller => 'products', :action => "download", :id => od.product.id, :class => 'medium-font' %><br/>
+								- <%= link_to "Click here to download " + od.product.title + " " + od.product.product_type.name, :controller => 'products', :action => "download", :id => od.product.id, :class => 'medium-font' %><br/>
 							<% end %>
 						<% end %>
 						<br/><br/>

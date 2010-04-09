@@ -40,6 +40,22 @@ class CartController < ApplicationController
   def checkout
     @total = 0
     
+    coupon_code = params[:cart][:coupon]
+    discount = Discount.find_by_code(coupon_code.upcase)
+    
+    if !coupon_code.nil? && coupon_code != "" && discount.nil?
+      flash[:notice] = "Coupon Code is not valid.  Please enter a valid coupon code or checkout."
+      index
+      render :action => 'index'
+    elsif !coupon_code.nil? && coupon_code != "" && !discount.active?
+      flash[:notice] = "Coupon Code has expired.  Please enter a valid coupon code or checkout."
+      index
+      render :action => 'index'
+    end
+    
+    flash[:notice] = nil
+    session[:coupon] = discount
+
     session[:cart_item].each do |item|
       @total = @total + (item.quantity.to_i * item.product.price)
     end
@@ -53,6 +69,7 @@ class CartController < ApplicationController
     RoyalcirqueMailer::deliver_order_received(@o.customer, @o)
 
     session[:cart_item] = nil    
+    session[:coupon] = nil
     render :action => 'finished'
   end
 
@@ -98,13 +115,23 @@ class CartController < ApplicationController
     @cust.orders << @order
     @cust.save
 
+    discount = session[:coupon]
     # add the order details
     session[:cart_item].each do |item|
       od = OrderDetail.new
       od.product = item.product
       od.quantity = item.quantity
       od.subtotal = item.product.price * od.quantity
-      od.discount = 0 #TODO
+      
+      od.discount = 0
+      if !discount.nil? && discount.product.id == od.product.id
+        if discount.is_percentage
+          od.discount = (item.product.price * (discount.discount/100)) * od.quantity
+        else
+          od.discount = (item.product.price - discount.discount) * od.quantity
+        end
+      end
+
       od.tax = 0 #no tax for out of state
       od.tax = (od.subtotal - od.discount) * 0.068 if (!@order.bill_state.nil? && @order.bill_state.downcase == "ut") || (!@order.bill_state.nil? && @order.bill_state.downcase == "utah")
       od.total = (od.subtotal - od.discount) + od.tax

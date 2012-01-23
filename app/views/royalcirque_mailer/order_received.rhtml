@@ -44,7 +44,8 @@
 	<% @order.order_details.each do |od| %>
 	<tr>
 		<td>
-			<%= od.product.title %>
+			<%= od.product.title %><br/>
+			<%= od.product.subtitle %>
 		</td>
 		<td>
 			<%= od.quantity %>

@@ -1,7 +1,7 @@
 <% content_for :title, "Royal Cirque Publishing Books and Media" %>
 <div id="home-content-banner" style="height:900px;">
 	<div id="featured-content" style="height:900px; background-image: none;background-color: #e5e5e3;">
-		<div id="featured-product" style="height:900px;">
+		<div id="featured-product" style="height:950px;">
 			<table border="0" cellspacing="0" cellpadding="0" class="content-table" width="100%">
 				<tr>
 					<td class="large-font">
@@ -11,7 +11,7 @@
 				<tr>
 					<td>
 						<table border="0" cellspacing="0" cellpadding="0" class="content-table" width="96%">
-							<% if @products.size > 20 %>
+							<% if @products.size > 10 %>
 							<tr>
 								<td class="normal-font" colspan="4">
 									<div class="gotham-light-forced-long-line"><%= will_paginate @products %></div>
@@ -26,6 +26,7 @@
 								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" valign="top"  width="150px">
 									<div class="gotham-light-forced-long-line medium-font"><%= product.product_type.name %><br/><br/></div>
 									<div class="gotham-light-forced-long-line medium-font"><%= product.title %></div>
+									<div class="gotham-light-forced-long-line medium-font"><%= product.subtitle %></div>
 									<div class="gotham-light-forced-long-line normal-font">by <%= product.author.first_name %> <%= product.author.last_name %></div>
 								</td>
 								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" valign="top" width="300px">
@@ -40,7 +41,7 @@
 								</td>
 							</tr>
 							<%- end -%>
-							<% if @products.size > 20 %>
+							<% if @products.size > 10 %>
 							<tr>
 								<td class="normal-font" colspan="4">
 									<div class="gotham-light-forced-long-line"><%= will_paginate @products %></div>

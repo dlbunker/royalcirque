@@ -1,4 +1,21 @@
-ActionController::Routing::Routes.draw do |map|
+Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/rails_admin', :as => 'rails_admin'
+
+  get '/products/detail/:id', to: 'products#detail'
+  get '/products', to: 'products#index'
+  get '/cart', to: 'cart#index'
+  get '/contact_us', to: 'contact_us#index'
+  get '/home/get_featured_image/:id', to: 'home#get_featured_image'
+  get '/products/get_thumb_image/:id', to: 'products#get_thumb_image'
+  get '/products/get_picture_image/:id', to: 'products#get_picture_image'
+  post '/cart/add_to_cart', to: 'cart#add_to_cart'
+  post '/cart/checkout', to: 'cart#checkout'
+
+  root :to => 'home#index'
+
+end
+
+# ActionController::Routing::Routes.draw do |map|
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -17,7 +34,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
@@ -32,13 +49,13 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
-  map.root :controller => "home"
 
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
-end
+
+#   map.connect ':controller/:action/:id'
+#   map.connect ':controller/:action/:id.:format'
+# end

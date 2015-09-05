@@ -13,22 +13,22 @@
 									 "jquery.sifr",
 									 "jquery.swfobject",
                                      "application" %>
-	      <script type="text/javascript"><!--  
-				$(document).ready(function(){  
-				     $.sifr({ build: 436, version: 3, path: "/fonts/", save: true });  
-				     $(".contact-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 105 });  
-				     $(".contact-us-2").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 30 });  
-				     $(".about-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 123 });  
-				     $(".gotham-light-forced-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 300 });  
-				     $(".gotham-light-forced-long-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 500 });  
-				     $(".gotham-light-forced-extra-long-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 700 });  
-				     $(".about-us-text").sifr({ font: "Gotham-Light", height: 100 });  
-				     $(".gotham-light").sifr({ font: "Gotham-Light", height: 150 });  
-				     $(".gotham-light-300").sifr({ font: "Gotham-Light", height: 150, width: 300 });  
-				     $(".gotham-light-600").sifr({ font: "Gotham-Light", height: 150, width: 600 });  
-				     $(".gotham-light-forced-line-50").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 50 });  
-				});  
-				$(document).ready(function(){  
+	      <script type="text/javascript"><!--
+				$(document).ready(function(){
+				     $.sifr({ build: 436, version: 3, path: "/fonts/", save: true });
+				     $(".contact-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 105 });
+				     $(".contact-us-2").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 30 });
+				     $(".about-us").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 123 });
+				     $(".gotham-light-forced-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 300 });
+				     $(".gotham-light-forced-long-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 500 });
+				     $(".gotham-light-forced-extra-long-line").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 700 });
+				     $(".about-us-text").sifr({ font: "Gotham-Light", height: 100 });
+				     $(".gotham-light").sifr({ font: "Gotham-Light", height: 150 });
+				     $(".gotham-light-300").sifr({ font: "Gotham-Light", height: 150, width: 300 });
+				     $(".gotham-light-600").sifr({ font: "Gotham-Light", height: 150, width: 600 });
+				     $(".gotham-light-forced-line-50").sifr({ font: "Gotham-Light", forceSingleLine: true, width: 50 });
+				});
+				$(document).ready(function(){
 					$(function() {
 						$(".hoverswap").hover(
 							function () {
@@ -39,11 +39,11 @@
 							}
 						);
 					});
-				});  
+				});
 				// -->
 	      </script>
           <%= yield :head %>
-	</head>  
+	</head>
   <body>
 	<div id="banner-white-spacer">
 	</div>
@@ -92,16 +92,16 @@
 									<div class="contact-us-2">US</div>
 								</td>
 								<td align="left" valign="top" class="normal-font" style="padding-top: 0px !important;">
-									<% form_for :contact, :url => { :controller => "home", :action => "send_mail" } do |f| %>
+                  <%= form_for :contact, :url => "/home/send_mail", :html => {:id => "desc_form", :class => "", :role => "form"} do |f| %>
 									 <table border="0" cellpadding="0" cellspacing="0">
 									 	<tr>
 									 		<td width="50%">
 												<div class="gotham-light-forced-line-50">Name:</div>
-												<%= f.text_field (:name)%>
+												<%= f.text_field :name%>
 											</td>
 											<td width="50%">
 												<div class="gotham-light-forced-line-50">Email:</div>
-												<%= f.text_field (:email)%>
+												<%= f.text_field :email%>
 											</td>
 									 	</tr>
 										<tr>
@@ -110,7 +110,7 @@
 													<tr>
 												 		<td width="80%">
 															<div class="gotham-light-forced-line-50">Message:</div>
-															<%= f.text_area (:message, :rows => 1)%>
+															<%= f.text_area :message, {:rows => 1} %>
 														</td>
 														<td width="20%">
 															<%= f.submit "Submit" %>
@@ -132,7 +132,7 @@
 	<div id="footer-white-spacer">
 	</div>
 	<div id="footer-fill">
-		<div id="copyright"><br/>&copy; 2010 ROYAL CIRQUE PUBLISHING. ALL RIGHTS RESERVED</div>
+		<div id="copyright"><br/>&copy; <%= Time.now.year %> ROYAL CIRQUE PUBLISHING. ALL RIGHTS RESERVED</div>
 	</div>
 	<script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

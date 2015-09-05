@@ -14,7 +14,7 @@
 							<% if @products.size > 10 %>
 							<tr>
 								<td class="normal-font" colspan="4">
-									<div class="gotham-light-forced-long-line"><%= will_paginate @products %></div>
+									<div class="gotham-light-forced-long-line"><%= paginate @products %></div>
 								</td>
 							</tr>
 							<% end %>
@@ -33,10 +33,10 @@
 									<div class="gotham-light-300"><%= product.description[0, product.description.index(".")] %>...<br/><br/><%= link_to 'View More', {:controller => "products", :action => "detail", :id => product.id} %></div>
 								</td>
 								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" valign="top" width="150px">
-									<% form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
+									<%= form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
 									<div class="gotham-light-forced-long-line medium-font"><%= number_to_currency product.price %> each</div><br/>
-									<%= f.hidden_field (:product_id, :value => product.id)%>
-									<div><%= f.text_field (:qty, :style => 'width: 20px;', :value => "1")%> <%= f.submit "Add to Cart" %></div>
+									<%= f.hidden_field :product_id, {:value => product.id} %>
+									<div><%= f.text_field :qty, {:style => 'width: 20px;', :value => "1"}%> <%= f.submit "Add to Cart" %></div>
 									<% end %>
 								</td>
 							</tr>
@@ -44,7 +44,7 @@
 							<% if @products.size > 10 %>
 							<tr>
 								<td class="normal-font" colspan="4">
-									<div class="gotham-light-forced-long-line"><%= will_paginate @products %></div>
+									<div class="gotham-light-forced-long-line"><%= paginate @products %></div>
 								</td>
 							</tr>
 							<% end %>

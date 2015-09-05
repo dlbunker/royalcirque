@@ -36,9 +36,9 @@
 							<tr>
 								<td>
 									<div class="gotham-light-forced-line medium-font">Price: <%= number_to_currency @product.price %></div>
-									<% form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
-									<div><%= f.text_field (:qty, :style => 'width: 20px;', :value => "1")%> <%= f.submit "Add to Cart" %></div>
-									<%= f.hidden_field (:product_id, :value => @product.id)%>
+									<%= form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
+										<div><%= f.text_field :qty, {:style => 'width: 20px;', :value => "1"}%> <%= f.submit "Add to Cart" %></div>
+										<%= f.hidden_field :product_id, :value => @product.id %>
 									<% end %>
 								</td>
 							</tr>

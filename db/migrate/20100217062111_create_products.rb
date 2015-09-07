@@ -3,9 +3,9 @@ class CreateProducts < ActiveRecord::Migration
     create_table :products do |t|
       t.references :product_type
       t.references :author
-      t.string :title, :limit => 50, :default => "" 
-      t.string :sku, :default => "" 
-      t.text :description, :default => "" 
+      t.string :title, :limit => 50, :default => ""
+      t.string :sku, :default => ""
+      t.text :description 
       t.decimal :price, :precision => 8, :scale => 2, :default => 0.0
     	t.binary :picture, :limit => 2.megabytes
     	t.binary :thumb_picture, :limit => 1.megabytes

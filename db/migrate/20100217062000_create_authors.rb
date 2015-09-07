@@ -4,7 +4,7 @@ class CreateAuthors < ActiveRecord::Migration
       t.string    :first_name
       t.string    :last_name
       t.string    :middle_initial
-      t.text :biography, :default => "" 
+      t.text :biography 
     	t.binary :picture, :limit => 2.megabytes
 
       t.timestamps

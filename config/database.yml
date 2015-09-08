@@ -27,11 +27,13 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: royalcirque
+  database: <%=ENV['OPENSHIFT_APP_NAME']%>
   pool: 15
-  username: admin3yHASy9
-  password: 4Icjf-dgK5yH
-  timeout: 5000
+  host: <%=ENV['OPENSHIFT_MYSQL_DB_HOST']%>
+  port: <%=ENV['OPENSHIFT_MYSQL_DB_PORT']%>
+  username: <%=ENV['OPENSHIFT_MYSQL_DB_USERNAME']%>
+  password: <%=ENV['OPENSHIFT_MYSQL_DB_PASSWORD']%>
+  socket: <%=ENV['OPENSHIFT_MYSQL_DB_SOCKET']%>
 
 # test:
 #   adapter: sqlite3

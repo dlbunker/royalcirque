@@ -27,10 +27,10 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: royalcirquepub
+  database: royalcirque
   pool: 15
-  username: rcp
-  password: rcp0915
+  username: admin3yHASy9
+  password: 4Icjf-dgK5yH
   timeout: 5000
 
 # test:

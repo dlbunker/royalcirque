@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/products/get_thumb_image/:id', to: 'products#get_thumb_image'
   get '/products/get_picture_image/:id', to: 'products#get_picture_image'
   post '/cart/add_to_cart', to: 'cart#add_to_cart'
+  get '/cart/add_to_cart', to: 'cart#add_to_cart'
   post '/cart/checkout', to: 'cart#checkout'
   post '/cart/review_order', to: 'cart#review_order'
   post '/cart/place_order', to: 'cart#place_order'

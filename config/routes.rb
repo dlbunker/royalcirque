@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   post '/cart/place_order', to: 'cart#place_order'
   post '/home/send_mail', to: 'home#send_mail'
 
+  get '/products/download/:id', to: 'products#download'
+  post '/products/download/:id', to: 'products#download'
+
   root :to => 'home#index'
 
 end

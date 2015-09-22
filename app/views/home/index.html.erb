@@ -4,28 +4,38 @@
 <div id="home-content-banner">
 	<div id="featured-content">
 		<div id="featured-product">
-			<table border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td>
-						<%= link_to image_tag("/home/get_featured_image/" + @product.id.to_s, :border =>0) , {:controller => "products", :action => "detail", :id => @product.id} %>
-					</td>
-					<td>
-						<table border="0" cellspacing="0" cellpadding="0" class="content-table">
-							<tr>
-								<td class="large-font">
-									<div class="gotham-light-forced-line"><%= @product.title %></div>
-									<div class="gotham-light-forced-line"><%= @product.subtitle %></div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="gotham-light-600"><%= @product.description %></div>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+			<div class="row">
+				<div class="col-md-4">
+					<%= link_to image_tag("/home/get_featured_image/" + @product.id.to_s, :border =>0) , {:controller => "products", :action => "detail", :id => @product.id} %>
+				</div>
+				<div class="col-md-8">
+					<!-- <div class="row">
+						<div class="col-md-12 large-font">
+							<div class="gotham-light-forced-line"><%= @product.title %></div>
+							<div class="gotham-light-forced-line"><%= @product.subtitle %></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="gotham-light-600"><%= @product.description %></div>
+						</div>
+					</div> -->
+					<table border="0" cellspacing="0" cellpadding="0" class="content-table">
+						<tr>
+							<td class="large-font">
+								<div class="gotham-light-forced-line"><%= @product.title %></div>
+								<div class="gotham-light-forced-line"><%= @product.subtitle %></div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="gotham-light-600 text-left"><%= @product.description %></div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>

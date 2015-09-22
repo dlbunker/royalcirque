@@ -38,3 +38,5 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 # For paging
 gem "kaminari"
+
+gem 'activerecord-session_store'

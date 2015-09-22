@@ -1,2 +1,5 @@
 public/images/.DS_Store
 tmp/
+app/.DS_Store
+app/models/.DS_Store
+public/stylesheets/.DS_Store

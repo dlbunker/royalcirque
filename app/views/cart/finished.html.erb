@@ -2,27 +2,27 @@
 <div id="home-content-banner">
 	<div id="featured-content">
 		<div id="featured-product">
-			<% form_for :customer, :url => { :controller => "cart", :action => "review_order" } do |f| %>
-			<table id="checkout-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
-				<tr>
-					<td class="large-font" align="center" style="border-bottom: 1px solid #6E6E6C">
-						<div class="gotham-light-forced-extra-long-line">Thank You for your Order</div>
-					</td>
-				</tr>
-				<tr>
-					<td class="medium-font" valign="top">
-						<% @o.order_details.each do |od| %>
-							<% if od.product.requires_shipping? %>
-								- <%= od.product.title %> <%= od.product.product_type.name %> will ship within 2 business days.<br/>
-							<% else %>
-								- <%= link_to "Click here to download " + od.product.title + " " + od.product.product_type.name, :controller => 'products', :action => "download", :id => od.product.id, :class => 'medium-font' %><br/>
+			<%= form_for :customer, :url => { :controller => "cart", :action => "review_order" } do |f| %>
+				<div class="row" style="border-bottom: 1px solid #6E6E6C">
+					<div class="col-md-12 text-center">
+						<div class="large-font" style="margin: 10px;">Thank You for your Order</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="medium-font" style="margin: 10px;">
+							<% @o.order_details.each do |od| %>
+								<% if od.product.requires_shipping? %>
+									- <%= od.product.title %> <%= od.product.product_type.name %> will ship within 2 business days.<br/>
+								<% else %>
+									- <%= link_to "Click here to download " + od.product.title + " " + od.product.product_type.name, :controller => 'products', :action => "download", :id => od.product.id, :class => 'medium-font' %><br/>
+								<% end %>
 							<% end %>
-						<% end %>
-						<br/><br/>
-						Please contact us if you have any questions.
-					</td>
-				</tr>
-			</table>
+							<br/><br/>
+							Please contact us if you have any questions.
+						</div>
+					</div>
+				</div>
 			<% end %>
 		</div>
 	</div>

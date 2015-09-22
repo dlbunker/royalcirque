@@ -2,50 +2,48 @@
 <div id="detail-content-banner">
 	<div id="detail-content">
 		<div id="product-detail">
-			<table border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td valign="top">
-						<%= link_to image_tag("/products/get_picture_image/" + @product.id.to_s, :border =>0, :style => 'padding: 10px;') , {:controller => "home" } %>
-					</td>
-					<td valign="top">
-						<table border="0" cellspacing="0" cellpadding="0" class="content-table">
-							<tr>
-								<td>
-									<div class="gotham-light-forced-line large-font"><%= @product.title %></div>
-									<div class="gotham-light-forced-line medium-font"><%= @product.subtitle %></div>
-									<div class="gotham-light-forced-long-line medium-font">by <%= @product.author.first_name %> <%= @product.author.last_name %></div>
-									<div class="gotham-light-forced-long-line medium-font"><%= @product.product_type.name %> SKU: <%= @product.sku %></div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="gotham-light-600"><%= @product.description %></div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<% if @product.product_type.name != "Music" %>
-										<div class="gotham-light-forced-line">Pages: <%= @product.pages %></div>
-									<% else %>
-										<div class="gotham-light-forced-line">Songs: <%= @product.pages %></div>
-									<% end %>
-									<div class="gotham-light-forced-line">Size: <%= @product.size %></div>
-									<div class="gotham-light-forced-long-line">Website: <a href="<%= @product.website %>" target="_blank"><%= @product.website %></a></div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="gotham-light-forced-line medium-font">Price: <%= number_to_currency @product.price %></div>
-									<%= form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
-										<div><%= f.text_field :qty, {:style => 'width: 20px;', :value => "1"}%> <%= f.submit "Add to Cart" %></div>
-										<%= f.hidden_field :product_id, :value => @product.id %>
-									<% end %>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
+			<div class="row">
+				<div class="col-md-4">
+					<%= link_to image_tag("/products/get_picture_image/" + @product.id.to_s, :border =>0, :style => 'padding: 10px;') , {:controller => "home" } %>
+				</div>
+				<div class="col-md-7" style="margin-left:10px;">
+					<div class="row" style="margin-top:10px;">
+						<div class="col-md-12">
+							<div class="gotham-light-forced-line large-font"><%= @product.title %></div>
+							<div class="gotham-light-forced-line medium-font"><%= @product.subtitle %></div>
+							<div class="gotham-light-forced-long-line medium-font">by <%= @product.author.first_name %> <%= @product.author.last_name %></div>
+							<div class="gotham-light-forced-long-line medium-font"><%= @product.product_type.name %> SKU: <%= @product.sku %></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="gotham-light-600"><%= @product.description %></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<% if @product.product_type.name != "Music" %>
+								<div class="gotham-light-forced-line">Pages: <%= @product.pages %></div>
+							<% else %>
+								<div class="gotham-light-forced-line">Songs: <%= @product.pages %></div>
+							<% end %>
+							<div class="gotham-light-forced-line">Size: <%= @product.size %></div>
+							<div class="gotham-light-forced-long-line">Website: <a href="<%= @product.website %>" target="_blank"><%= @product.website %></a></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="gotham-light-forced-line medium-font">Price: <%= number_to_currency @product.price %></div>
+							<%= form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
+								<div><%= f.text_field :qty, {:style => 'width: 20px;', :value => "1"}%> <%= f.submit "Add to Cart" %></div>
+								<%= f.hidden_field :product_id, :value => @product.id %>
+							<% end %>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>

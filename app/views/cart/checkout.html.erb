@@ -2,180 +2,134 @@
 <div id="checkout-content-banner">
 	<div id="checkout-content">
 		<div id="product-detail">
-			<% form_for :customer, :url => { :controller => "cart", :action => "review_order" } do |f| %>
-			<table id="checkout-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%">
-				<tr>
-					<td class="large-font" colspan="2" align="center">
-						<div class="gotham-light-forced-extra-long-line">Checkout</div>
-					</td>
-				</tr>
-				<tr>
-					<td width="50%" class="normal-font" valign="top">
-						<table id="customer-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="260px">
-							<tr>
-								<td>
-									Customer Information
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<%= f.label :first_name %><br/>
-									<%= f.text_field :first_name, :style => 'width: 150px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<%= f.label :last_name %><br/>
-									<%= f.text_field :last_name, :style => 'width: 150px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<%= f.label :email %><br/>
-									<%= f.text_field :email, :style => 'width: 150px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<%= f.check_box :agree_to_receive_info %>
-									Receive Emails about Royal Cirque Products?
-								</td>
-							</tr>
-						</table>
-						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="260px">
-							<tr>
-								<td>
-									Shipping Information
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Ship to name<br/>
-									<%= f.text_field :ship_name, :style => 'width: 150px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Street 1<br/>
-									<%= f.text_field :ship_street_1, :style => 'width: 150px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Street 2<br/>
-									<%= f.text_field :ship_street_2, :style => 'width: 150px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									City, State, Zip<br/>
-									<%= f.text_field :ship_city, :style => 'width: 100px;'%>
-									<%= f.text_field :ship_state, :style => 'width: 50px;'%>
-									<%= f.text_field :ship_zip, :style => 'width: 50px;'%>
-								</td>
-							</tr>
-						</table>
-					</td>
-					<td width="50%" class="normal-font" valign="top">
-						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="260px">
-							<% if @total > 0 %>
-							<tr>
-								<td>
-									Billing Information - 
-									<input type="checkbox" id="copy-shipping-info" />
-									Click here if your Billing info is the same as your Shipping info
-							      <script type="text/javascript"><!--  
-										$(document).ready(function(){  
-											$('#copy-shipping-info').click(function(){
-												if($('#copy-shipping-info:checked')) {
-													$('#customer_bill_name').val($('#customer_ship_name').val());
-													$('#customer_bill_street_1').val($('#customer_ship_street_1').val());
-													$('#customer_bill_street_2').val($('#customer_ship_street_2').val());
-													$('#customer_bill_city').val($('#customer_ship_city').val());
-													$('#customer_bill_state').val($('#customer_ship_state').val());
-													$('#customer_bill_zip').val($('#customer_ship_zip').val());
-												}
-											})
-										});
-										// -->
-							      </script>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Name on card<br/>
-									<%= f.text_field :bill_name, :style => 'width: 150px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Street 1<br/>
-									<%= f.text_field :bill_street_1, :style => 'width: 150px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Street 2<br/>
-									<%= f.text_field :bill_street_2, :style => 'width: 150px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									City, State, Zip<br/>
-									<%= f.text_field :bill_city, :style => 'width: 100px;'%>
-									<%= f.text_field :bill_state, :style => 'width: 50px;'%>
-									<%= f.text_field :bill_zip, :style => 'width: 50px;'%>
-								</td>
-							</tr>
-							<% else %>
-							<tr>
-								<td>
-									Your Order Total was $0.00 so you do not need to input any billing information
-								</td>
-							</tr>
-							<% end %>
-						</table>
-						<table id="shipping-table" class="content-table" border="0" cellspacing="0" cellpadding="0" width="98%" style="border: 1px solid #6E6E6C" height="260px">
-							<% if @total > 0 %>
-							<tr>
-								<td>
-									Credit Card Information
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Card number<br/>
-									<%= f.text_field :card_number, :style => 'width: 150px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Card Expiration Date (MM/YY)<br/>
-									<%= f.text_field :card_expire_date, :style => 'width: 50px;'%>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									Card CVV2 Number<br/>
-									<%= f.text_field :card_cvv2, :style => 'width: 50px;'%>
-								</td>
-							</tr>
-							<% else %>
-							<tr>
-								<td>
-									Your Order Total was $0.00 so you do not need to input any credit card information
-								</td>
-							</tr>
-							<% end %>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<div><%= f.submit "Review Order" %></div>
-					</td>
-				</tr>
-			</table>
+			<%= form_for :customer, :url => { :controller => "cart", :action => "review_order" } do |f| %>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="large-font" style="margin: 10px;">Checkout</div>
+				</div>
+			</div>
+			<div class="row" style="padding: 10px;">
+				<div class="col-md-6">
+					<h2>Customer Information</h2>
+					<div class="form-group">
+						<%= f.label :first_name %><br/>
+						<%= f.text_field :first_name, :class => 'form-control'%>
+					</div>
+					<div class="form-group">
+						<%= f.label :last_name %><br/>
+						<%= f.text_field :last_name, :class => 'form-control'%>
+					</div>
+					<div class="form-group">
+						<%= f.label :email %><br/>
+						<%= f.text_field :email, :class => 'form-control'%>
+					</div>
+					<div class="form-group">
+						<div class="checkbox" style="">
+							<label>
+								<%= f.check_box :agree_to_receive_info %>
+								Receive Emails about Royal Cirque Products?
+							</label>
+						</div>
+					</div>
+
+					<h2>Shipping Information</h2>
+					<div class="form-group">
+						<%= f.label "Ship to name" %><br/>
+						<%= f.text_field :ship_name, :class => 'form-control'%>
+					</div>
+					<div class="form-group">
+						<%= f.label "Street 1" %><br/>
+						<%= f.text_field :ship_street_1, :class => 'form-control'%>
+					</div>
+					<div class="form-group">
+						<%= f.label "Street 2" %><br/>
+						<%= f.text_field :ship_street_2, :class => 'form-control'%>
+					</div>
+					<div class="form-group">
+						<%= f.label "City" %><br/>
+						<%= f.text_field :ship_city, :class => 'form-control'%>
+					</div>
+					<div class="form-group">
+						<%= f.label "State" %><br/>
+						<%= f.text_field :ship_state, :class => 'form-control'%>
+					</div>
+					<div class="form-group">
+						<%= f.label "Zip" %><br/>
+						<%= f.text_field :ship_zip, :class => 'form-control'%>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<% if @total > 0 %>
+						<h2>Billing Information</h2>
+						<p><input type="checkbox" id="copy-shipping-info" />
+						Click here if your Billing info is the same as your Shipping info</p>
+						<script type="text/javascript"><!--
+						$(document).ready(function(){
+							$('#copy-shipping-info').click(function(){
+								if($('#copy-shipping-info:checked')) {
+									$('#customer_bill_name').val($('#customer_ship_name').val());
+									$('#customer_bill_street_1').val($('#customer_ship_street_1').val());
+									$('#customer_bill_street_2').val($('#customer_ship_street_2').val());
+									$('#customer_bill_city').val($('#customer_ship_city').val());
+									$('#customer_bill_state').val($('#customer_ship_state').val());
+									$('#customer_bill_zip').val($('#customer_ship_zip').val());
+								}
+							})
+						});
+						// -->
+						</script>
+
+						<div class="form-group">
+							<%= f.label "Name on card" %><br/>
+							<%= f.text_field :bill_name, :class => 'form-control'%>
+						</div>
+						<div class="form-group">
+							<%= f.label "Street 1" %><br/>
+							<%= f.text_field :bill_street_1, :class => 'form-control'%>
+						</div>
+						<div class="form-group">
+							<%= f.label "Street 2" %><br/>
+							<%= f.text_field :bill_street_2, :class => 'form-control'%>
+						</div>
+						<div class="form-group">
+							<%= f.label "City" %><br/>
+							<%= f.text_field :bill_city, :class => 'form-control'%>
+						</div>
+						<div class="form-group">
+							<%= f.label "State" %><br/>
+							<%= f.text_field :bill_state, :class => 'form-control'%>
+						</div>
+						<div class="form-group">
+							<%= f.label "Zip" %><br/>
+							<%= f.text_field :bill_zip, :class => 'form-control'%>
+						</div>
+
+						<h2>Credit Card Information</h2>
+						<div class="form-group">
+							<%= f.label "Card number" %><br/>
+							<%= f.text_field :card_number, :class => 'form-control'%>
+						</div>
+						<div class="form-group">
+							<%= f.label "Card Expiration Date (MM/YY)" %><br/>
+							<%= f.text_field :card_expire_date, :class => 'form-control'%>
+						</div>
+						<div class="form-group">
+							<%= f.label "Card CVV2 Number" %><br/>
+							<%= f.text_field :card_cvv2, :class => 'form-control'%>
+						</div>
+
+					<% else %>
+						<p>Your Order Total was $0.00 so you do not need to input any billing information</p>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="row" style="margin: 10px;">
+				<div class="col-md-12 text-center">
+					<%= f.submit "Review Order", :class => "btn btn-default input-sm" %>
+					<br/><br/>
+				</div>
+			</div>
 			<% end %>
 		</div>
 	</div>

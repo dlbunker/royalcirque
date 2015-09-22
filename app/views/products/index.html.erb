@@ -1,57 +1,49 @@
 <% content_for :title, "Royal Cirque Publishing Books and Media" %>
-<div id="home-content-banner" style="height:1000px;">
-	<div id="featured-content" style="height:1000px; background-image: none;background-color: #e5e5e3;">
-		<div id="featured-product" style="height:1000px;">
-			<table border="0" cellspacing="0" cellpadding="0" class="content-table" width="100%">
-				<tr>
-					<td class="large-font">
-						<div class="gotham-light-forced-extra-long-line">Royal Cirque Publishing Media and Products</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<table border="0" cellspacing="0" cellpadding="0" class="content-table" width="96%">
-							<% if @products.size > 10 %>
-							<tr>
-								<td class="normal-font" colspan="4">
-									<div class="gotham-light-forced-long-line"><%= paginate @products %></div>
-								</td>
-							</tr>
-							<% end %>
-							<%- @products.each do |product| -%>
-							<tr>
-								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" width="155px">
-									<%= link_to image_tag("/products/get_thumb_image/" + product.id.to_s, :border =>0, :style => ' border: 1px solid #6E6E6C;') , {:controller => "products", :action => "detail", :id => product.id } %>
-								</td>
-								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" valign="top"  width="150px">
-									<div class="gotham-light-forced-long-line medium-font"><%= product.product_type.name %><br/><br/></div>
-									<div class="gotham-light-forced-long-line medium-font"><%= product.title %></div>
-									<div class="gotham-light-forced-long-line medium-font"><%= product.subtitle %></div>
-									<div class="gotham-light-forced-long-line normal-font">by <%= product.author.first_name %> <%= product.author.last_name %></div>
-								</td>
-								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" valign="top" width="300px">
-									<div class="gotham-light-300"><%= product.description[0, product.description.index(".")] %>...<br/><br/><%= link_to 'View More', {:controller => "products", :action => "detail", :id => product.id} %></div>
-								</td>
-								<td style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C;" valign="top" width="150px">
-									<%= form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
-									<div class="gotham-light-forced-long-line medium-font"><%= number_to_currency product.price %> each</div><br/>
-									<%= f.hidden_field :product_id, {:value => product.id} %>
-									<div><%= f.text_field :qty, {:style => 'width: 20px;', :value => "1"}%> <%= f.submit "Add to Cart" %></div>
-									<% end %>
-								</td>
-							</tr>
-							<%- end -%>
-							<% if @products.size > 10 %>
-							<tr>
-								<td class="normal-font" colspan="4">
-									<div class="gotham-light-forced-long-line"><%= paginate @products %></div>
-								</td>
-							</tr>
-							<% end %>
-						</table>
-					</td>
-				</tr>
-			</table>
+<div id="home-content-banner">
+	<div id="featured-content" style="background-image: none;background-color: #e5e5e3;">
+		<div id="featured-product">
+			<div class="row">
+				<div class="col-md-12" style="margin: 10px;">
+					<div class="large-font">Royal Cirque Publishing Media and Products</div>
+				</div>
+			</div>
+			<% if @products.size > 10 %>
+				<div class="row" style="padding-top: 10px; padding-bottom: 10px;">
+					<div class="col-md-12">
+						<div class="gotham-light-forced-long-line"><%= paginate @products %></div>
+					</div>
+				</div>
+			<% end %>
+			<% @products.each do |product| %>
+				<div class="row" style="border-top: 1px solid #6E6E6C; border-bottom: 1px solid #6E6E6C; padding-top: 10px; padding-bottom: 10px;">
+					<div class="col-md-3 text-center">
+						<%= link_to image_tag("/products/get_thumb_image/" + product.id.to_s, :border =>0, :style => ' border: 1px solid #6E6E6C;') , {:controller => "products", :action => "detail", :id => product.id } %>
+					</div>
+					<div class="col-md-2">
+						<div class="gotham-light-forced-long-line medium-font"><%= product.product_type.name %><br/><br/></div>
+						<div class="gotham-light-forced-long-line medium-font"><%= product.title %></div>
+						<div class="gotham-light-forced-long-line medium-font"><%= product.subtitle %></div>
+						<div class="gotham-light-forced-long-line normal-font">by <%= product.author.first_name %> <%= product.author.last_name %></div>
+					</div>
+					<div class="col-md-4">
+						<div class="gotham-light-300"><%= product.description[0, product.description.index(".")] %>...<br/><br/><%= link_to 'View More', {:controller => "products", :action => "detail", :id => product.id} %></div>
+					</div>
+					<div class="col-md-3">
+						<%= form_for :cart, :url => { :controller => "cart", :action => "add_to_cart" } do |f| %>
+						<div class="gotham-light-forced-long-line medium-font"><%= number_to_currency product.price %> each</div><br/>
+						<%= f.hidden_field :product_id, {:value => product.id} %>
+						<div><%= f.text_field :qty, {:style => 'width: 20px;', :value => "1"}%> <%= f.submit "Add to Cart" %></div>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+			<% if @products.size > 10 %>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="gotham-light-forced-long-line"><%= paginate @products %></div>
+					</div>
+				</div>
+			<% end %>
 		</div>
 	</div>
 </div>

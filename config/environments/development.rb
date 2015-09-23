@@ -41,5 +41,12 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.action_mailer.delivery_method  = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_host: "mg.royalcirquepub.com",
+    api_key:  "key-04601611b1f0e3445279091dfbd4260a"
+  }
+
 end

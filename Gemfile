@@ -29,6 +29,7 @@ gem 'unicorn'
 
 gem 'therubyracer'
 
+gem 'rails-mailgun', git: "git://github.com/code-mancers/rails-mailgun.git"
 
 # To use debugger
 # gem 'ruby-debug'

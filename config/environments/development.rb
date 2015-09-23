@@ -45,7 +45,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method  = :mailgun
   config.action_mailer.mailgun_settings = {
-    api_host: "mg.royalcirquepub.com",
+    api_host: "https://api.mailgun.net/v3/mg.royalcirquepub.com",
     api_key:  "key-04601611b1f0e3445279091dfbd4260a"
   }
 

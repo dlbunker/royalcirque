@@ -43,10 +43,18 @@ Rails.application.configure do
 
   # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
-  config.action_mailer.delivery_method  = :mailgun
-  config.action_mailer.mailgun_settings = {
-    api_host: "https://api.mailgun.net/v3/mg.royalcirquepub.com",
-    api_key:  "key-04601611b1f0e3445279091dfbd4260a"
+  # config.action_mailer.delivery_method  = :mailgun
+  # config.action_mailer.mailgun_settings = {
+  #   api_host: "https://api.mailgun.net/v3/mg.royalcirquepub.com",
+  #   api_key:  "key-04601611b1f0e3445279091dfbd4260a"
+  # }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "mg.royalcirquepub.com",
+    :user_name => "postmaster@mg.royalcirquepub.com",
+    :password => "51c6eb2386fd47afb4fe51fa287e0acb"
   }
-
 end

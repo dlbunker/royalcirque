@@ -11,6 +11,11 @@ class HomeController < ApplicationController
 	end
 
   def send_mail
+    #honey pot check
+     if contact_params[:member_name] && contact_params[:member_name] != ""
+       return
+     end
+
      flash[:notice] = 'Message sent successfully.'
      RoyalcirqueMailer.mail_royal_cirque(contact_params[:name], contact_params[:email], contact_params[:message]).deliver
      redirect_to :action => 'index'
@@ -19,6 +24,6 @@ class HomeController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact).permit(:name, :email, :message)
+    params.require(:contact).permit(:name, :email, :message, :member_name)
   end
 end
